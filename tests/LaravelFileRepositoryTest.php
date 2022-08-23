@@ -36,7 +36,7 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_adds_location_to_paths()
+    public function itAddsLocationToPaths()
     {
         $this->repository->addLocation('some/path');
 
@@ -46,59 +46,59 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_returns_a_collection()
+    public function itReturnsACollection()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
 
         $this->assertInstanceOf(Collection::class, $this->repository->toCollection());
         $this->assertInstanceOf(Collection::class, $this->repository->collections());
     }
 
     /** @test */
-    public function it_returns_all_enabled_modules()
+    public function itReturnsAllEnabledModules()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
 
         $this->assertCount(0, $this->repository->getByStatus(true));
         $this->assertCount(0, $this->repository->allEnabled());
     }
 
     /** @test */
-    public function it_returns_all_disabled_modules()
+    public function itReturnsAllDisabledModules()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
 
         $this->assertCount(3, $this->repository->getByStatus(false));
         $this->assertCount(3, $this->repository->allDisabled());
     }
 
     /** @test */
-    public function it_counts_all_modules()
+    public function itCountsAllModules()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
 
         $this->assertEquals(3, $this->repository->count());
     }
 
     /** @test */
-    public function it_finds_a_module()
+    public function itFindsAModule()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
 
         $this->assertInstanceOf(Module::class, $this->repository->find('recipe'));
     }
 
     /** @test */
-    public function it_finds_a_module_by_alias()
+    public function itFindsAModuleByAlias()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
 
         $this->assertInstanceOf(Module::class, $this->repository->findByAlias('recipe'));
         $this->assertInstanceOf(Module::class, $this->repository->findByAlias('required_module'));
     }
 
     /** @test */
-    public function it_find_or_fail_throws_exception_if_module_not_found()
+    public function itFindOrFailThrowsExceptionIfModuleNotFound()
     {
         $this->expectException(ModuleNotFoundException::class);
 
@@ -106,16 +106,16 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_finds_the_module_asset_path()
+    public function itFindsTheModuleAssetPath()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid/Recipe');
+        $this->repository->addLocation(__DIR__.'/stubs/valid/Recipe');
         $assetPath = $this->repository->assetPath('recipe');
 
         $this->assertEquals(public_path('modules/recipe'), $assetPath);
     }
 
     /** @test */
-    public function it_gets_the_used_storage_path()
+    public function itGetsTheUsedStoragePath()
     {
         $path = $this->repository->getUsedStoragePath();
 
@@ -123,9 +123,9 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_sets_used_module()
+    public function itSetsUsedModule()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
 
         $this->repository->setUsed('Recipe');
 
@@ -133,19 +133,19 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_returns_laravel_filesystem()
+    public function itReturnsLaravelFilesystem()
     {
         $this->assertInstanceOf(Filesystem::class, $this->repository->getFiles());
     }
 
     /** @test */
-    public function it_gets_the_assets_path()
+    public function itGetsTheAssetsPath()
     {
         $this->assertEquals(public_path('modules'), $this->repository->getAssetsPath());
     }
 
     /** @test */
-    public function it_gets_a_specific_module_asset()
+    public function itGetsASpecificModuleAsset()
     {
         $path = $this->repository->asset('recipe:test.js');
 
@@ -153,7 +153,7 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_throws_exception_if_module_is_omitted()
+    public function itThrowsExceptionIfModuleIsOmitted()
     {
         $this->expectException(InvalidAssetPath::class);
         $this->expectExceptionMessage('Module name was not specified in asset [test.js].');
@@ -162,9 +162,9 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_detect_if_module_is_active()
+    public function itCanDetectIfModuleIsActive()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
 
         $this->repository->enable('Recipe');
 
@@ -172,9 +172,9 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_detect_if_module_is_inactive()
+    public function itCanDetectIfModuleIsInactive()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
 
         $this->repository->isDisabled('Recipe');
 
@@ -182,7 +182,7 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_get_and_set_the_stubs_path()
+    public function itCanGetAndSetTheStubsPath()
     {
         $this->repository->setStubPath('some/stub/path');
 
@@ -190,7 +190,7 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_gets_the_configured_stubs_path_if_enabled()
+    public function itGetsTheConfiguredStubsPathIfEnabled()
     {
         $this->app['config']->set('modules.stubs.enabled', true);
 
@@ -198,15 +198,15 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_returns_default_stub_path()
+    public function itReturnsDefaultStubPath()
     {
         $this->assertNull($this->repository->getStubPath());
     }
 
     /** @test */
-    public function it_can_disabled_a_module()
+    public function itCanDisabledAModule()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
 
         $this->repository->disable('Recipe');
 
@@ -214,9 +214,9 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_enable_a_module()
+    public function itCanEnableAModule()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
 
         $this->repository->enable('Recipe');
 
@@ -224,7 +224,7 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_delete_a_module()
+    public function itCanDeleteAModule()
     {
         $this->artisan('module:make', ['name' => ['Blog']]);
 
@@ -234,9 +234,9 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_find_all_requirements_of_a_module()
+    public function itCanFindAllRequirementsOfAModule()
     {
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
 
         $requirements = $this->repository->findRequirements('Recipe');
 
@@ -245,7 +245,7 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_register_macros()
+    public function itCanRegisterMacros()
     {
         Module::macro('registeredMacro', function () {
         });
@@ -254,19 +254,19 @@ class LaravelFileRepositoryTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_does_not_have_unregistered_macros()
+    public function itDoesNotHaveUnregisteredMacros()
     {
         $this->assertFalse(Module::hasMacro('unregisteredMacro'));
     }
 
     /** @test */
-    public function it_calls_macros_on_modules()
+    public function itCallsMacrosOnModules()
     {
         Module::macro('getReverseName', function () {
             return strrev($this->getLowerName());
         });
 
-        $this->repository->addLocation(__DIR__ . '/stubs/valid');
+        $this->repository->addLocation(__DIR__.'/stubs/valid');
         $module = $this->repository->find('recipe');
 
         $this->assertEquals('epicer', $module->getReverseName());

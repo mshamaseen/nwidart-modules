@@ -33,46 +33,46 @@ class NotificationMakeCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_generates_the_mail_class()
+    public function itGeneratesTheMailClass()
     {
         $code = $this->artisan('module:make-notification', ['name' => 'WelcomeNotification', 'module' => 'Blog']);
 
-        $this->assertTrue(is_file($this->modulePath . '/Notifications/WelcomeNotification.php'));
+        $this->assertTrue(is_file($this->modulePath.'/Notifications/WelcomeNotification.php'));
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_generated_correct_file_with_content()
+    public function itGeneratedCorrectFileWithContent()
     {
         $code = $this->artisan('module:make-notification', ['name' => 'WelcomeNotification', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Notifications/WelcomeNotification.php');
+        $file = $this->finder->get($this->modulePath.'/Notifications/WelcomeNotification.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace()
+    public function itCanChangeTheDefaultNamespace()
     {
         $this->app['config']->set('modules.paths.generator.notifications.path', 'SuperNotifications');
 
         $code = $this->artisan('module:make-notification', ['name' => 'WelcomeNotification', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/SuperNotifications/WelcomeNotification.php');
+        $file = $this->finder->get($this->modulePath.'/SuperNotifications/WelcomeNotification.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace_specific()
+    public function itCanChangeTheDefaultNamespaceSpecific()
     {
         $this->app['config']->set('modules.paths.generator.notifications.namespace', 'SuperNotifications');
 
         $code = $this->artisan('module:make-notification', ['name' => 'WelcomeNotification', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Notifications/WelcomeNotification.php');
+        $file = $this->finder->get($this->modulePath.'/Notifications/WelcomeNotification.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);

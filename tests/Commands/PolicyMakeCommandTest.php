@@ -33,11 +33,11 @@ class PolicyMakeCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_makes_policy()
+    public function itMakesPolicy()
     {
         $code = $this->artisan('module:make-policy', ['name' => 'PostPolicy', 'module' => 'Blog']);
 
-        $policyFile = $this->modulePath . '/Policies/PostPolicy.php';
+        $policyFile = $this->modulePath.'/Policies/PostPolicy.php';
 
         $this->assertTrue(is_file($policyFile), 'Policy file was not created.');
         $this->assertMatchesSnapshot($this->finder->get($policyFile));
@@ -45,26 +45,26 @@ class PolicyMakeCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace()
+    public function itCanChangeTheDefaultNamespace()
     {
         $this->app['config']->set('modules.paths.generator.policies.path', 'SuperPolicies');
 
         $code = $this->artisan('module:make-policy', ['name' => 'PostPolicy', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/SuperPolicies/PostPolicy.php');
+        $file = $this->finder->get($this->modulePath.'/SuperPolicies/PostPolicy.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace_specific()
+    public function itCanChangeTheDefaultNamespaceSpecific()
     {
         $this->app['config']->set('modules.paths.generator.policies.namespace', 'SuperPolicies');
 
         $code = $this->artisan('module:make-policy', ['name' => 'PostPolicy', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Policies/PostPolicy.php');
+        $file = $this->finder->get($this->modulePath.'/Policies/PostPolicy.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);

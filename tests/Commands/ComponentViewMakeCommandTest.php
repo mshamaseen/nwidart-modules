@@ -33,29 +33,30 @@ class ComponentViewCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_generates_the_component_view()
+    public function itGeneratesTheComponentView()
     {
         $code = $this->artisan('module:make-component-view', ['name' => 'Blog', 'module' => 'Blog']);
-        $this->assertTrue(is_file($this->modulePath . '/Resources/views/components/blog.blade.php'));
+        $this->assertTrue(is_file($this->modulePath.'/Resources/views/components/blog.blade.php'));
         $this->assertSame(0, $code);
     }
+
     /** @test */
-    public function it_generated_correct_file_with_content()
+    public function itGeneratedCorrectFileWithContent()
     {
         $code = $this->artisan('module:make-component-view', ['name' => 'Blog', 'module' => 'Blog']);
-        $file = $this->finder->get($this->modulePath . '/Resources/views/components/blog.blade.php');
+        $file = $this->finder->get($this->modulePath.'/Resources/views/components/blog.blade.php');
         $this->assertTrue(str_contains($file, '<div>'));
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace()
+    public function itCanChangeTheDefaultNamespace()
     {
         $this->app['config']->set('modules.paths.generator.component-view.path', 'Resources/views/components/newDirectory');
 
         $code = $this->artisan('module:make-component-view', ['name' => 'Blog', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Resources/views/components/newDirectory/blog.blade.php');
+        $file = $this->finder->get($this->modulePath.'/Resources/views/components/newDirectory/blog.blade.php');
 
         $this->assertTrue(str_contains($file, '<div>'));
         $this->assertSame(0, $code);

@@ -12,6 +12,7 @@ class Migrator
 {
     /**
      * Module instance.
+     *
      * @var Module
      */
     protected $module;
@@ -19,12 +20,12 @@ class Migrator
     /**
      * Laravel Application instance.
      *
-     * @var Application.
+     * @var application
      */
     protected $laravel;
 
     /**
-     * The database connection to be used
+     * The database connection to be used.
      *
      * @var string
      */
@@ -32,8 +33,6 @@ class Migrator
 
     /**
      * Create new instance.
-     * @param Module $module
-     * @param Application $application
      */
     public function __construct(Module $module, Application $application)
     {
@@ -42,7 +41,7 @@ class Migrator
     }
 
     /**
-     * Set the database connection to be used
+     * Set the database connection to be used.
      *
      * @param $database
      *
@@ -83,17 +82,18 @@ class Migrator
     /**
      * Get migration files.
      *
-     * @param boolean $reverse
+     * @param bool $reverse
+     *
      * @return array
      */
     public function getMigrations($reverse = false)
     {
-        $files = $this->laravel['files']->glob($this->getPath() . '/*_*.php');
+        $files = $this->laravel['files']->glob($this->getPath().'/*_*.php');
 
         // Once we have the array of files in the directory we will just remove the
         // extension and take the basename of the file which is all we need when
         // finding the migrations that haven't been run against the databases.
-        if ($files === false) {
+        if (false === $files) {
             return [];
         }
 
@@ -202,8 +202,8 @@ class Migrator
 
         $class = Str::studly($name);
 
-        if (!class_exists($class) && file_exists($this->getPath() . '/' . $file . '.php')) {
-            return include $this->getPath() . '/' . $file . '.php';
+        if (!class_exists($class) && file_exists($this->getPath().'/'.$file.'.php')) {
+            return include $this->getPath().'/'.$file.'.php';
         }
 
         return new $class();
@@ -211,14 +211,12 @@ class Migrator
 
     /**
      * Require in all the migration files in a given path.
-     *
-     * @param array  $files
      */
     public function requireFiles(array $files)
     {
         $path = $this->getPath();
         foreach ($files as $file) {
-            $this->laravel['files']->requireOnce($path . '/' . $file . '.php');
+            $this->laravel['files']->requireOnce($path.'/'.$file.'.php');
         }
     }
 
@@ -273,6 +271,7 @@ class Migrator
      * Get the last migration batch number.
      *
      * @param array|null $migrations
+     *
      * @return int
      */
     public function getLastBatchNumber($migrations = null)

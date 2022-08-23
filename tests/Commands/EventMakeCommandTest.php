@@ -34,46 +34,46 @@ class EventMakeCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_generates_a_new_event_class()
+    public function itGeneratesANewEventClass()
     {
         $code = $this->artisan('module:make-event', ['name' => 'PostWasCreated', 'module' => 'Blog']);
 
-        $this->assertTrue(is_file($this->modulePath . '/Events/PostWasCreated.php'));
+        $this->assertTrue(is_file($this->modulePath.'/Events/PostWasCreated.php'));
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_generated_correct_file_with_content()
+    public function itGeneratedCorrectFileWithContent()
     {
         $code = $this->artisan('module:make-event', ['name' => 'PostWasCreated', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Events/PostWasCreated.php');
+        $file = $this->finder->get($this->modulePath.'/Events/PostWasCreated.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace()
+    public function itCanChangeTheDefaultNamespace()
     {
         $this->app['config']->set('modules.paths.generator.event.path', 'SuperEvents');
 
         $code = $this->artisan('module:make-event', ['name' => 'PostWasCreated', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/SuperEvents/PostWasCreated.php');
+        $file = $this->finder->get($this->modulePath.'/SuperEvents/PostWasCreated.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace_specific()
+    public function itCanChangeTheDefaultNamespaceSpecific()
     {
         $this->app['config']->set('modules.paths.generator.event.namespace', 'SuperEvents');
 
         $code = $this->artisan('module:make-event', ['name' => 'PostWasCreated', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Events/PostWasCreated.php');
+        $file = $this->finder->get($this->modulePath.'/Events/PostWasCreated.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);

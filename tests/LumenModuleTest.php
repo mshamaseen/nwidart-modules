@@ -21,7 +21,7 @@ class LumenModuleTest extends BaseTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->module = new LumenTestingModule($this->app, 'Recipe Name', __DIR__ . '/stubs/valid/Recipe');
+        $this->module = new LumenTestingModule($this->app, 'Recipe Name', __DIR__.'/stubs/valid/Recipe');
         $this->activator = $this->app[ActivatorInterface::class];
     }
 
@@ -32,62 +32,62 @@ class LumenModuleTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_gets_module_name()
+    public function itGetsModuleName()
     {
         $this->assertEquals('Recipe Name', $this->module->getName());
     }
 
     /** @test */
-    public function it_gets_lowercase_module_name()
+    public function itGetsLowercaseModuleName()
     {
         $this->assertEquals('recipe name', $this->module->getLowerName());
     }
 
     /** @test */
-    public function it_gets_studly_name()
+    public function itGetsStudlyName()
     {
         $this->assertEquals('RecipeName', $this->module->getStudlyName());
     }
 
     /** @test */
-    public function it_gets_snake_name()
+    public function itGetsSnakeName()
     {
         $this->assertEquals('recipe_name', $this->module->getSnakeName());
     }
 
     /** @test */
-    public function it_gets_module_description()
+    public function itGetsModuleDescription()
     {
         $this->assertEquals('recipe module', $this->module->getDescription());
     }
 
     /** @test */
-    public function it_gets_module_alias()
+    public function itGetsModuleAlias()
     {
         $this->assertEquals('recipe', $this->module->getAlias());
     }
 
     /** @test */
-    public function it_gets_module_path()
+    public function itGetsModulePath()
     {
-        $this->assertEquals(__DIR__ . '/stubs/valid/Recipe', $this->module->getPath());
+        $this->assertEquals(__DIR__.'/stubs/valid/Recipe', $this->module->getPath());
     }
 
     /** @test */
-    public function it_gets_required_modules()
+    public function itGetsRequiredModules()
     {
         $this->assertEquals(['required_module'], $this->module->getRequires());
     }
 
     /** @test */
-    public function it_loads_module_translations()
+    public function itLoadsModuleTranslations()
     {
-        (new LumenTestingModule($this->app, 'Recipe', __DIR__ . '/stubs/valid/Recipe'))->boot();
+        (new LumenTestingModule($this->app, 'Recipe', __DIR__.'/stubs/valid/Recipe'))->boot();
         $this->assertEquals('Recipe', trans('recipe::recipes.title.recipes'));
     }
 
     /** @test */
-    public function it_reads_module_json_files()
+    public function itReadsModuleJsonFiles()
     {
         $jsonModule = $this->module->json();
         $composerJson = $this->module->json('composer.json');
@@ -99,7 +99,7 @@ class LumenModuleTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_reads_key_from_module_json_file_via_helper_method()
+    public function itReadsKeyFromModuleJsonFileViaHelperMethod()
     {
         $this->assertEquals('Recipe', $this->module->get('name'));
         $this->assertEquals('0.1', $this->module->get('version'));
@@ -108,33 +108,33 @@ class LumenModuleTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_reads_key_from_composer_json_file_via_helper_method()
+    public function itReadsKeyFromComposerJsonFileViaHelperMethod()
     {
         $this->assertEquals('nwidart/recipe', $this->module->getComposerAttr('name'));
     }
 
     /** @test */
-    public function it_casts_module_to_string()
+    public function itCastsModuleToString()
     {
         $this->assertEquals('RecipeName', (string) $this->module);
     }
 
     /** @test */
-    public function it_module_status_check()
+    public function itModuleStatusCheck()
     {
         $this->assertFalse($this->module->isStatus(true));
         $this->assertTrue($this->module->isStatus(false));
     }
 
     /** @test */
-    public function it_checks_module_enabled_status()
+    public function itChecksModuleEnabledStatus()
     {
         $this->assertFalse($this->module->isEnabled());
         $this->assertTrue($this->module->isDisabled());
     }
 
     /** @test */
-    public function it_fires_events_when_module_is_enabled()
+    public function itFiresEventsWhenModuleIsEnabled()
     {
         Event::fake();
 
@@ -145,7 +145,7 @@ class LumenModuleTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_fires_events_when_module_is_disabled()
+    public function itFiresEventsWhenModuleIsDisabled()
     {
         Event::fake();
 
@@ -156,7 +156,7 @@ class LumenModuleTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_has_a_good_providers_manifest_path()
+    public function itHasAGoodProvidersManifestPath()
     {
         $this->assertEquals(
             $this->app->basePath("storage/app/{$this->module->getSnakeName()}_module.php"),

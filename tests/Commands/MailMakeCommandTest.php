@@ -33,46 +33,46 @@ class MailMakeCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_generates_the_mail_class()
+    public function itGeneratesTheMailClass()
     {
         $code = $this->artisan('module:make-mail', ['name' => 'SomeMail', 'module' => 'Blog']);
 
-        $this->assertTrue(is_file($this->modulePath . '/Emails/SomeMail.php'));
+        $this->assertTrue(is_file($this->modulePath.'/Emails/SomeMail.php'));
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_generated_correct_file_with_content()
+    public function itGeneratedCorrectFileWithContent()
     {
         $code = $this->artisan('module:make-mail', ['name' => 'SomeMail', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Emails/SomeMail.php');
+        $file = $this->finder->get($this->modulePath.'/Emails/SomeMail.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace()
+    public function itCanChangeTheDefaultNamespace()
     {
         $this->app['config']->set('modules.paths.generator.emails.path', 'SuperEmails');
 
         $code = $this->artisan('module:make-mail', ['name' => 'SomeMail', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/SuperEmails/SomeMail.php');
+        $file = $this->finder->get($this->modulePath.'/SuperEmails/SomeMail.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace_specific()
+    public function itCanChangeTheDefaultNamespaceSpecific()
     {
         $this->app['config']->set('modules.paths.generator.emails.namespace', 'SuperEmails');
 
         $code = $this->artisan('module:make-mail', ['name' => 'SomeMail', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Emails/SomeMail.php');
+        $file = $this->finder->get($this->modulePath.'/Emails/SomeMail.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);

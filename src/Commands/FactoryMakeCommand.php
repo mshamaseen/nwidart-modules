@@ -68,7 +68,7 @@ class FactoryMakeCommand extends GeneratorCommand
 
         $factoryPath = GenerateConfigReader::read('factory');
 
-        return $path . $factoryPath->getPath() . '/' . $this->getFileName();
+        return $path.$factoryPath->getPath().'/'.$this->getFileName();
     }
 
     /**
@@ -76,7 +76,7 @@ class FactoryMakeCommand extends GeneratorCommand
      */
     private function getFileName()
     {
-        return Str::studly($this->argument('name')) . 'Factory.php';
+        return Str::studly($this->argument('name')).'Factory.php';
     }
 
     /**
@@ -89,8 +89,6 @@ class FactoryMakeCommand extends GeneratorCommand
 
     /**
      * Get default namespace.
-     *
-     * @return string
      */
     public function getDefaultNamespace(): string
     {
@@ -106,11 +104,9 @@ class FactoryMakeCommand extends GeneratorCommand
 
     /**
      * Get model namespace.
-     *
-     * @return string
      */
     public function getModelNamespace(): string
     {
-        return $this->laravel['modules']->config('namespace') . '\\' . $this->getModule()->getSubModuleOneSlashNamespace() . '\\' . $this->laravel['modules']->config('paths.generator.model.path', 'Entities');
+        return $this->laravel['modules']->config('namespace').'\\'.$this->getModule()->getSubModuleOneSlashNamespace().'\\'.$this->laravel['modules']->config('paths.generator.model.path', 'Entities');
     }
 }

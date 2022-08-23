@@ -32,7 +32,7 @@ class ListCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_list_modules()
+    public function itCanListModules()
     {
         $code = $this->artisan('module:list');
 

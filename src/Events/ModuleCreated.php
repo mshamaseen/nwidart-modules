@@ -2,13 +2,14 @@
 
 namespace Nwidart\Modules\Events;
 
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 use Nwidart\Modules\Generators\ModuleGenerator;
 
 class ModuleCreated
 {
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
 
     public function __construct(public ModuleGenerator $moduleGenerator)
     {

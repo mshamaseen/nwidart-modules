@@ -23,7 +23,7 @@ class EnableCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_enables_a_module()
+    public function itEnablesAModule()
     {
         /** @var Module $blogModule */
         $blogModule = $this->app[RepositoryInterface::class]->find('Blog');
@@ -36,7 +36,7 @@ class EnableCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_enables_all_modules()
+    public function itEnablesAllModules()
     {
         /** @var Module $blogModule */
         $blogModule = $this->app[RepositoryInterface::class]->find('Blog');

@@ -60,7 +60,6 @@ class SetupCommand extends Command
      * @param $dir
      * @param $success
      * @param $error
-     * @return int
      */
     protected function generateDirectory($dir, $success, $error): int
     {

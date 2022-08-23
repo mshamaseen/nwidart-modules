@@ -25,6 +25,7 @@ class Installer
 
     /**
      * The module repository instance.
+     *
      * @var \Nwidart\Modules\Contracts\RepositoryInterface
      */
     protected $repository;
@@ -50,7 +51,7 @@ class Installer
      */
     protected $timeout = 3360;
     /**
-     * @var null|string
+     * @var string|null
      */
     private $type;
     /**
@@ -90,7 +91,7 @@ class Installer
 
     /**
      * Set the module repository instance.
-     * @param \Nwidart\Modules\Contracts\RepositoryInterface $repository
+     *
      * @return $this
      */
     public function setRepository(RepositoryInterface $repository)
@@ -102,8 +103,6 @@ class Installer
 
     /**
      * Set console command instance.
-     *
-     * @param \Illuminate\Console\Command $console
      *
      * @return $this
      */
@@ -203,7 +202,6 @@ class Installer
                 return "git@bitbucket.org:{$this->name}.git";
 
             default:
-
                 // Check of type 'scheme://host/path'
                 if (filter_var($this->type, FILTER_VALIDATE_URL)) {
                     return $this->type;
@@ -250,10 +248,10 @@ class Installer
     public function getPackageName()
     {
         if (is_null($this->version)) {
-            return $this->name . ':dev-master';
+            return $this->name.':dev-master';
         }
 
-        return $this->name . ':' . $this->version;
+        return $this->name.':'.$this->version;
     }
 
     /**

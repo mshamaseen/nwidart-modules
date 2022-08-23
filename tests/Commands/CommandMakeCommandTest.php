@@ -33,60 +33,60 @@ class CommandMakeCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_generates_a_new_console_command_class()
+    public function itGeneratesANewConsoleCommandClass()
     {
         $code = $this->artisan('module:make-command', ['name' => 'MyAwesomeCommand', 'module' => 'Blog']);
 
-        $this->assertTrue(is_file($this->modulePath . '/Console/MyAwesomeCommand.php'));
+        $this->assertTrue(is_file($this->modulePath.'/Console/MyAwesomeCommand.php'));
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_generated_correct_file_with_content()
+    public function itGeneratedCorrectFileWithContent()
     {
         $code = $this->artisan('module:make-command', ['name' => 'MyAwesomeCommand', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Console/MyAwesomeCommand.php');
+        $file = $this->finder->get($this->modulePath.'/Console/MyAwesomeCommand.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_uses_set_command_name_in_class()
+    public function itUsesSetCommandNameInClass()
     {
         $code = $this->artisan(
             'module:make-command',
             ['name' => 'MyAwesomeCommand', 'module' => 'Blog', '--command' => 'my:awesome']
         );
 
-        $file = $this->finder->get($this->modulePath . '/Console/MyAwesomeCommand.php');
+        $file = $this->finder->get($this->modulePath.'/Console/MyAwesomeCommand.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace()
+    public function itCanChangeTheDefaultNamespace()
     {
         $this->app['config']->set('modules.paths.generator.command.path', 'Commands');
 
         $code = $this->artisan('module:make-command', ['name' => 'AwesomeCommand', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Commands/AwesomeCommand.php');
+        $file = $this->finder->get($this->modulePath.'/Commands/AwesomeCommand.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace_specific()
+    public function itCanChangeTheDefaultNamespaceSpecific()
     {
         $this->app['config']->set('modules.paths.generator.command.namespace', 'Commands');
 
         $code = $this->artisan('module:make-command', ['name' => 'AwesomeCommand', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Console/AwesomeCommand.php');
+        $file = $this->finder->get($this->modulePath.'/Console/AwesomeCommand.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);

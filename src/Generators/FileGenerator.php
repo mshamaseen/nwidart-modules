@@ -83,8 +83,6 @@ class FileGenerator extends Generator
     /**
      * Set filesystem.
      *
-     * @param Filesystem $filesystem
-     *
      * @return $this
      */
     public function setFilesystem(Filesystem $filesystem)
@@ -134,7 +132,7 @@ class FileGenerator extends Generator
         if (!$this->filesystem->exists($path)) {
             return $this->filesystem->put($path, $this->getContents());
         }
-        if ($this->overwriteFile === true) {
+        if (true === $this->overwriteFile) {
             return $this->filesystem->put($path, $this->getContents());
         }
 

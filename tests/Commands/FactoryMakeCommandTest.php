@@ -33,11 +33,11 @@ class FactoryMakeCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_makes_factory()
+    public function itMakesFactory()
     {
         $code = $this->artisan('module:make-factory', ['name' => 'Post', 'module' => 'Blog']);
 
-        $factoryFile = $this->modulePath . '/Database/factories/PostFactory.php';
+        $factoryFile = $this->modulePath.'/Database/factories/PostFactory.php';
 
         $this->assertTrue(is_file($factoryFile), 'Factory file was not created.');
         $this->assertMatchesSnapshot($this->finder->get($factoryFile));

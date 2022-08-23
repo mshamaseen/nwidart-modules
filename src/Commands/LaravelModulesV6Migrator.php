@@ -22,11 +22,11 @@ class LaravelModulesV6Migrator extends Command
         $modules = $modules->all();
         /** @var Module $module */
         foreach ($modules as $module) {
-            if ($module->json()->get('active') === 1) {
+            if (1 === $module->json()->get('active')) {
                 $module->enable();
                 $moduleStatuses[] = [$module->getName(), 'Enabled'];
             }
-            if ($module->json()->get('active') === 0) {
+            if (0 === $module->json()->get('active')) {
                 $module->disable();
                 $moduleStatuses[] = [$module->getName(), 'Disabled'];
             }

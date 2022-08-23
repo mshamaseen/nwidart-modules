@@ -3,7 +3,6 @@
 namespace Nwidart\Modules\Commands;
 
 use Illuminate\Console\Command;
-use Nwidart\Modules\Events\ModuleCreated;
 use Nwidart\Modules\Events\ModuleDeleted;
 use Symfony\Component\Console\Input\InputArgument;
 

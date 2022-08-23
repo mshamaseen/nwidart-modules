@@ -29,12 +29,9 @@ class Updater extends Runner
      */
     private function isComposerSilenced()
     {
-        return config('modules.composer.composer-output') === false ? ' --quiet' : '';
+        return false === config('modules.composer.composer-output') ? ' --quiet' : '';
     }
 
-    /**
-     * @param Module $module
-     */
     private function installRequires(Module $module)
     {
         $packages = $module->getComposerAttr('require', []);
@@ -49,9 +46,6 @@ class Updater extends Runner
         }
     }
 
-    /**
-     * @param Module $module
-     */
     private function installDevRequires(Module $module)
     {
         $devPackages = $module->getComposerAttr('require-dev', []);
@@ -66,9 +60,6 @@ class Updater extends Runner
         }
     }
 
-    /**
-     * @param Module $module
-     */
     private function copyScriptsToMainComposerJson(Module $module)
     {
         $scripts = $module->getComposerAttr('scripts', []);

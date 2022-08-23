@@ -64,7 +64,6 @@ class SeedCommand extends Command
 
     /**
      * @throws RuntimeException
-     * @return RepositoryInterface
      */
     public function getModuleRepository(): RepositoryInterface
     {
@@ -86,7 +85,7 @@ class SeedCommand extends Command
     public function getModuleByName($name)
     {
         $modules = $this->getModuleRepository();
-        if ($modules->has($name) === false) {
+        if (false === $modules->has($name)) {
             throw new RuntimeException("Module [$name] does not exists.");
         }
 
@@ -94,8 +93,6 @@ class SeedCommand extends Command
     }
 
     /**
-     * @param Module $module
-     *
      * @return void
      */
     public function moduleSeed(Module $module)
@@ -104,17 +101,17 @@ class SeedCommand extends Command
         $name = $module->getName();
         $config = $module->get('migration');
         if (is_array($config) && array_key_exists('seeds', $config)) {
-            foreach ((array)$config['seeds'] as $class) {
+            foreach ((array) $config['seeds'] as $class) {
                 if (class_exists($class)) {
                     $seeders[] = $class;
                 }
             }
         } else {
-            $class = $this->getSeederName($name); //legacy support
+            $class = $this->getSeederName($name); // legacy support
             if (class_exists($class)) {
                 $seeders[] = $class;
             } else {
-                //look at other namespaces
+                // look at other namespaces
                 $classes = $this->getSeederNames($name);
                 foreach ($classes as $class) {
                     if (class_exists($class)) {
@@ -138,7 +135,7 @@ class SeedCommand extends Command
     protected function dbSeed($className)
     {
         if ($option = $this->option('class')) {
-            $params['--class'] = Str::finish(substr($className, 0, strrpos($className, '\\')), '\\') . $option;
+            $params['--class'] = Str::finish(substr($className, 0, strrpos($className, '\\')), '\\').$option;
         } else {
             $params = ['--class' => $className];
         }
@@ -169,7 +166,7 @@ class SeedCommand extends Command
         $config = GenerateConfigReader::read('seeder');
         $seederPath = str_replace('/', '\\', $config->getPath());
 
-        return $namespace . '\\' . $name . '\\' . $seederPath . '\\' . $name . 'DatabaseSeeder';
+        return $namespace.'\\'.$name.'\\'.$seederPath.'\\'.$name.'DatabaseSeeder';
     }
 
     /**
@@ -189,7 +186,7 @@ class SeedCommand extends Command
         $foundModules = [];
         foreach ($this->laravel['modules']->config('scan.paths') as $path) {
             $namespace = array_slice(explode('/', $path), -1)[0];
-            $foundModules[] = $namespace . '\\' . $name . '\\' . $seederPath . '\\' . $name . 'DatabaseSeeder';
+            $foundModules[] = $namespace.'\\'.$name.'\\'.$seederPath.'\\'.$name.'DatabaseSeeder';
         }
 
         return $foundModules;
@@ -198,8 +195,9 @@ class SeedCommand extends Command
     /**
      * Report the exception to the exception handler.
      *
-     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
-     * @param  \Throwable  $e
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     * @param \Throwable                                        $e
+     *
      * @return void
      */
     protected function renderException($output, \Exception $e)
@@ -210,7 +208,8 @@ class SeedCommand extends Command
     /**
      * Report the exception to the exception handler.
      *
-     * @param  \Throwable  $e
+     * @param \Throwable $e
+     *
      * @return void
      */
     protected function reportException(\Exception $e)

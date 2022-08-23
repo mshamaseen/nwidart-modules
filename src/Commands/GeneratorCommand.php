@@ -68,8 +68,6 @@ abstract class GeneratorCommand extends Command
 
     /**
      * Get default namespace.
-     *
-     * @return string
      */
     public function getDefaultNamespace(): string
     {
@@ -87,9 +85,9 @@ abstract class GeneratorCommand extends Command
     {
         $namespace = $this->laravel['modules']->config('namespace');
 
-        $namespace .= '\\' . $module->getStudlyName();
+        $namespace .= '\\'.$module->getStudlyName();
 
-        $namespace .= '\\' . $this->getDefaultNamespace();
+        $namespace .= '\\'.$this->getDefaultNamespace();
 
         $namespace = str_replace('/', '\\', $namespace);
 

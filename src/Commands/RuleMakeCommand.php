@@ -62,7 +62,7 @@ class RuleMakeCommand extends GeneratorCommand
 
         return (new Stub('/rule.stub', [
             'NAMESPACE' => $this->getClassNamespace($module),
-            'CLASS'     => $this->getFileName(),
+            'CLASS' => $this->getFileName(),
         ]))->render();
     }
 
@@ -75,7 +75,7 @@ class RuleMakeCommand extends GeneratorCommand
 
         $rulePath = GenerateConfigReader::read('rules');
 
-        return $path . $rulePath->getPath() . '/' . $this->getFileName() . '.php';
+        return $path.$rulePath->getPath().'/'.$this->getFileName().'.php';
     }
 
     /**

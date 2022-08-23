@@ -33,11 +33,11 @@ class RuleMakeCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_makes_rule()
+    public function itMakesRule()
     {
         $code = $this->artisan('module:make-rule', ['name' => 'UniqueRule', 'module' => 'Blog']);
 
-        $ruleFile = $this->modulePath . '/Rules/UniqueRule.php';
+        $ruleFile = $this->modulePath.'/Rules/UniqueRule.php';
 
         $this->assertTrue(is_file($ruleFile), 'Rule file was not created.');
         $this->assertMatchesSnapshot($this->finder->get($ruleFile));
@@ -45,26 +45,26 @@ class RuleMakeCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace()
+    public function itCanChangeTheDefaultNamespace()
     {
         $this->app['config']->set('modules.paths.generator.rules.path', 'SuperRules');
 
         $code = $this->artisan('module:make-rule', ['name' => 'UniqueRule', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/SuperRules/UniqueRule.php');
+        $file = $this->finder->get($this->modulePath.'/SuperRules/UniqueRule.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace_specific()
+    public function itCanChangeTheDefaultNamespaceSpecific()
     {
         $this->app['config']->set('modules.paths.generator.rules.namespace', 'SuperRules');
 
         $code = $this->artisan('module:make-rule', ['name' => 'UniqueRule', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Rules/UniqueRule.php');
+        $file = $this->finder->get($this->modulePath.'/Rules/UniqueRule.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);

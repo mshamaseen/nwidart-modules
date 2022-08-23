@@ -2,13 +2,13 @@
 
 namespace Nwidart\Modules\Events;
 
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
-use Nwidart\Modules\Generators\ModuleGenerator;
+use Illuminate\Queue\SerializesModels;
 
 class ModuleDeleted
 {
-    use Dispatchable, SerializesModels;
+    use Dispatchable;
+    use SerializesModels;
 
     public function __construct(public string $name)
     {

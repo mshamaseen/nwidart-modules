@@ -34,8 +34,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php if (isset($recipes)): ?>
-                        <?php foreach ($recipes as $recipe): ?>
+                        <?php if (isset($recipes)) { ?>
+                        <?php foreach ($recipes as $recipe) { ?>
                         <tr>
                             <td>
                                 <a href="{{ route('admin.recipe.recipe.edit', [$recipe->id]) }}">
@@ -52,8 +52,8 @@
                                 </div>
                             </td>
                         </tr>
-                        <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?php } ?>
+                        <?php } ?>
                         </tbody>
                         <tfoot>
                         <tr>
@@ -69,8 +69,8 @@
             </div>
         </div>
     </div>
-    <?php if (isset($recipes)): ?>
-    <?php foreach ($recipes as $recipe): ?>
+    <?php if (isset($recipes)) { ?>
+    <?php foreach ($recipes as $recipe) { ?>
     <!-- Modal -->
     <div class="modal fade modal-danger" id="confirmation-{{ $recipe->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -91,8 +91,8 @@
             </div>
         </div>
     </div>
-    <?php endforeach; ?>
-    <?php endif; ?>
+    <?php } ?>
+    <?php } ?>
 @stop
 
 @section('footer')
@@ -110,7 +110,7 @@
         $( document ).ready(function() {
             $(document).keypressAction({
                 actions: [
-                    { key: 'c', route: "<?= route('admin.recipe.recipe.create') ?>" }
+                    { key: 'c', route: "<?php echo route('admin.recipe.recipe.create'); ?>" }
                 ]
             });
         });
@@ -127,7 +127,7 @@
                 "autoWidth": true,
                 "order": [[ 0, "desc" ]],
                 "language": {
-                    "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json") ?>'
+                    "url": '<?php echo Module::asset("core:js/vendor/datatables/{$locale}.json"); ?>'
                 },
                 "columns": [
                     null,

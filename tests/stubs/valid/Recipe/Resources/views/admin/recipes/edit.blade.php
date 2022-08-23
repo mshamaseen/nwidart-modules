@@ -24,7 +24,7 @@
                 <div class="tab-content">
                     <?php $i = 0; ?>
                     @foreach (LaravelLocalization::getSupportedLocales() as $locale => $language)
-                        <?php $i++; ?>
+                        <?php ++$i; ?>
                         <div class="tab-pane {{ locale() == $locale ? 'active' : '' }}" id="tab_{{ $i }}">
                             @include('recipe::admin.recipes.partials.edit-fields', ['lang' => $locale])
                         </div>
@@ -70,7 +70,7 @@
         $( document ).ready(function() {
             $(document).keypressAction({
                 actions: [
-                    { key: 'b', route: "<?= route('admin.recipe.recipe.index') ?>" }
+                    { key: 'b', route: "<?php echo route('admin.recipe.recipe.index'); ?>" }
                 ]
             });
         });

@@ -7,7 +7,7 @@ use Nwidart\Modules\Support\Migrations\SchemaParser;
 class SchemaParserTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */
-    public function it_generates_migration_method_calls()
+    public function itGeneratesMigrationMethodCalls()
     {
         $parser = new SchemaParser('username:string, password:integer');
 
@@ -20,7 +20,7 @@ TEXT;
     }
 
     /** @test */
-    public function it_generates_migration_methods_for_up_method()
+    public function itGeneratesMigrationMethodsForUpMethod()
     {
         $parser = new SchemaParser('username:string, password:integer');
 
@@ -33,7 +33,7 @@ TEXT;
     }
 
     /** @test */
-    public function it_generates_migration_methods_for_down_method()
+    public function itGeneratesMigrationMethodsForDownMethod()
     {
         $parser = new SchemaParser('username:string, password:integer');
 

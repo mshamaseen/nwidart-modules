@@ -18,6 +18,7 @@ abstract class Publisher implements PublisherInterface
 
     /**
      * The modules repository instance.
+     *
      * @var RepositoryInterface
      */
     protected $repository;
@@ -52,8 +53,6 @@ abstract class Publisher implements PublisherInterface
 
     /**
      * The constructor.
-     *
-     * @param Module $module
      */
     public function __construct(Module $module)
     {
@@ -96,7 +95,7 @@ abstract class Publisher implements PublisherInterface
 
     /**
      * Set modules repository instance.
-     * @param RepositoryInterface $repository
+     *
      * @return $this
      */
     public function setRepository(RepositoryInterface $repository)
@@ -118,8 +117,6 @@ abstract class Publisher implements PublisherInterface
 
     /**
      * Set console instance.
-     *
-     * @param \Illuminate\Console\Command $console
      *
      * @return $this
      */
@@ -184,7 +181,7 @@ abstract class Publisher implements PublisherInterface
         }
 
         if ($this->getFilesystem()->copyDirectory($sourcePath, $destinationPath)) {
-            if ($this->showMessage === true) {
+            if (true === $this->showMessage) {
                 $this->console->line("<info>Published</info>: {$this->module->getStudlyName()}");
             }
         } else {

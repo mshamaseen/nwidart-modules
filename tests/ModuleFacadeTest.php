@@ -7,7 +7,7 @@ use Nwidart\Modules\Facades\Module;
 class ModuleFacadeTest extends BaseTestCase
 {
     /** @test */
-    public function it_resolves_the_module_facade()
+    public function itResolvesTheModuleFacade()
     {
         $modules = Module::all();
 
@@ -15,7 +15,7 @@ class ModuleFacadeTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_creates_macros_via_facade()
+    public function itCreatesMacrosViaFacade()
     {
         $modules = Module::macro('testMacro', function () {
             return true;
@@ -25,7 +25,7 @@ class ModuleFacadeTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_calls_macros_via_facade()
+    public function itCallsMacrosViaFacade()
     {
         $modules = Module::macro('testMacro', function () {
             return 'a value';

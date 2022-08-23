@@ -33,47 +33,47 @@ class ControllerMakeCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_generates_a_new_controller_class()
+    public function itGeneratesANewControllerClass()
     {
         $code = $this->artisan('module:make-controller', ['controller' => 'MyController', 'module' => 'Blog']);
 
-        $this->assertTrue(is_file($this->modulePath . '/Http/Controllers/MyController.php'));
+        $this->assertTrue(is_file($this->modulePath.'/Http/Controllers/MyController.php'));
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_generated_correct_file_with_content()
+    public function itGeneratedCorrectFileWithContent()
     {
         $code = $this->artisan('module:make-controller', ['controller' => 'MyController', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Http/Controllers/MyController.php');
+        $file = $this->finder->get($this->modulePath.'/Http/Controllers/MyController.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_appends_controller_to_name_if_not_present()
+    public function itAppendsControllerToNameIfNotPresent()
     {
         $code = $this->artisan('module:make-controller', ['controller' => 'My', 'module' => 'Blog']);
 
-        $this->assertTrue(is_file($this->modulePath . '/Http/Controllers/MyController.php'));
+        $this->assertTrue(is_file($this->modulePath.'/Http/Controllers/MyController.php'));
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_appends_controller_to_class_name_if_not_present()
+    public function itAppendsControllerToClassNameIfNotPresent()
     {
         $code = $this->artisan('module:make-controller', ['controller' => 'My', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Http/Controllers/MyController.php');
+        $file = $this->finder->get($this->modulePath.'/Http/Controllers/MyController.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_generates_a_plain_controller()
+    public function itGeneratesAPlainController()
     {
         $code = $this->artisan('module:make-controller', [
             'controller' => 'MyController',
@@ -81,14 +81,14 @@ class ControllerMakeCommandTest extends BaseTestCase
             '--plain' => true,
         ]);
 
-        $file = $this->finder->get($this->modulePath . '/Http/Controllers/MyController.php');
+        $file = $this->finder->get($this->modulePath.'/Http/Controllers/MyController.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_generates_an_api_controller()
+    public function itGeneratesAnApiController()
     {
         $code = $this->artisan('module:make-controller', [
             'controller' => 'MyController',
@@ -96,53 +96,53 @@ class ControllerMakeCommandTest extends BaseTestCase
             '--api' => true,
         ]);
 
-        $file = $this->finder->get($this->modulePath . '/Http/Controllers/MyController.php');
+        $file = $this->finder->get($this->modulePath.'/Http/Controllers/MyController.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace()
+    public function itCanChangeTheDefaultNamespace()
     {
         $this->app['config']->set('modules.paths.generator.controller.path', 'Controllers');
 
         $code = $this->artisan('module:make-controller', ['controller' => 'MyController', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Controllers/MyController.php');
+        $file = $this->finder->get($this->modulePath.'/Controllers/MyController.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace_specific()
+    public function itCanChangeTheDefaultNamespaceSpecific()
     {
         $this->app['config']->set('modules.paths.generator.controller.namespace', 'Controllers');
 
         $code = $this->artisan('module:make-controller', ['controller' => 'MyController', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Http/Controllers/MyController.php');
+        $file = $this->finder->get($this->modulePath.'/Http/Controllers/MyController.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_generate_a_controller_in_sub_namespace_in_correct_folder()
+    public function itCanGenerateAControllerInSubNamespaceInCorrectFolder()
     {
         $code = $this->artisan('module:make-controller', ['controller' => 'Api\\MyController', 'module' => 'Blog']);
 
-        $this->assertTrue(is_file($this->modulePath . '/Http/Controllers/Api/MyController.php'));
+        $this->assertTrue(is_file($this->modulePath.'/Http/Controllers/Api/MyController.php'));
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_generate_a_controller_in_sub_namespace_with_correct_generated_file()
+    public function itCanGenerateAControllerInSubNamespaceWithCorrectGeneratedFile()
     {
         $code = $this->artisan('module:make-controller', ['controller' => 'Api\\MyController', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Http/Controllers/Api/MyController.php');
+        $file = $this->finder->get($this->modulePath.'/Http/Controllers/Api/MyController.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);

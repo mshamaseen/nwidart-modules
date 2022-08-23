@@ -29,29 +29,29 @@ class StubTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_initialises_a_stub_instance()
+    public function itInitialisesAStubInstance()
     {
         $stub = new Stub('/model.stub', [
             'NAME' => 'Name',
         ]);
 
         $this->assertTrue(Str::contains($stub->getPath(), 'src/Commands/stubs/model.stub'));
-        $this->assertEquals(['NAME' => 'Name', ], $stub->getReplaces());
+        $this->assertEquals(['NAME' => 'Name'], $stub->getReplaces());
     }
 
     /** @test */
-    public function it_sets_new_replaces_array()
+    public function itSetsNewReplacesArray()
     {
         $stub = new Stub('/model.stub', [
             'NAME' => 'Name',
         ]);
 
-        $stub->replace(['VENDOR' => 'MyVendor', ]);
-        $this->assertEquals(['VENDOR' => 'MyVendor', ], $stub->getReplaces());
+        $stub->replace(['VENDOR' => 'MyVendor']);
+        $this->assertEquals(['VENDOR' => 'MyVendor'], $stub->getReplaces());
     }
 
     /** @test */
-    public function it_stores_stub_to_specific_path()
+    public function itStoresStubToSpecificPath()
     {
         $stub = new Stub('/command.stub', [
             'COMMAND_NAME' => 'my:command',
@@ -65,7 +65,7 @@ class StubTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_sets_new_path()
+    public function itSetsNewPath()
     {
         $stub = new Stub('/model.stub', [
             'NAME' => 'Name',
@@ -77,7 +77,7 @@ class StubTest extends BaseTestCase
     }
 
     /** @test */
-    public function use_default_stub_if_override_not_exists()
+    public function useDefaultStubIfOverrideNotExists()
     {
         $stub = new Stub('/command.stub', [
             'COMMAND_NAME' => 'my:command',
@@ -85,7 +85,7 @@ class StubTest extends BaseTestCase
             'CLASS' => 'MyCommand',
         ]);
 
-        $stub->setBasePath(__DIR__ . '/stubs');
+        $stub->setBasePath(__DIR__.'/stubs');
 
         $stub->saveTo(base_path(), 'stub-override-not-exists.php');
 
@@ -93,13 +93,13 @@ class StubTest extends BaseTestCase
     }
 
     /** @test */
-    public function use_override_stub_if_exists()
+    public function useOverrideStubIfExists()
     {
         $stub = new Stub('/model.stub', [
             'NAME' => 'Name',
         ]);
 
-        $stub->setBasePath(__DIR__ . '/stubs');
+        $stub->setBasePath(__DIR__.'/stubs');
 
         $stub->saveTo(base_path(), 'stub-override-exists.php');
 

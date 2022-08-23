@@ -22,7 +22,7 @@ class PublishCommandTest extends BaseTestCase
         $this->modulePath = base_path('modules/Blog');
         $this->finder = $this->app['files'];
         $this->artisan('module:make', ['name' => ['Blog']]);
-        $this->finder->put($this->modulePath . '/Assets/script.js', 'assetfile');
+        $this->finder->put($this->modulePath.'/Assets/script.js', 'assetfile');
     }
 
     public function tearDown(): void
@@ -32,7 +32,7 @@ class PublishCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_published_module_assets()
+    public function itPublishedModuleAssets()
     {
         $code = $this->artisan('module:publish', ['module' => 'Blog']);
 

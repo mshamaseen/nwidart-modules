@@ -31,7 +31,7 @@ class PublishTranslationCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_published_module_translations()
+    public function itPublishedModuleTranslations()
     {
         $code = $this->artisan('module:publish-translation', ['module' => 'Blog']);
 

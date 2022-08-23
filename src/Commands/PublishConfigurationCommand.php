@@ -43,6 +43,7 @@ class PublishConfigurationCommand extends Command
 
     /**
      * @param string $module
+     *
      * @return string
      */
     private function getServiceProviderForModule($module)

@@ -7,7 +7,7 @@ use Nwidart\Modules\Support\Migrations\NameParser;
 class NameParserTest extends \PHPUnit\Framework\TestCase
 {
     /** @test */
-    public function it_gets_the_original_name()
+    public function itGetsTheOriginalName()
     {
         $parser = new NameParser('create_users_table');
 
@@ -15,7 +15,7 @@ class NameParserTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @test */
-    public function it_gets_the_table_name()
+    public function itGetsTheTableName()
     {
         $parser = new NameParser('create_users_table');
 
@@ -23,7 +23,7 @@ class NameParserTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @test */
-    public function it_gets_the_action_name()
+    public function itGetsTheActionName()
     {
         self::assertEquals('create', (new NameParser('create_users_table'))->getAction());
         self::assertEquals('update', (new NameParser('update_users_table'))->getAction());
@@ -32,13 +32,13 @@ class NameParserTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @test */
-    public function it_gets_first_part_of_name_if_no_action_was_guessed()
+    public function itGetsFirstPartOfNameIfNoActionWasGuessed()
     {
         self::assertEquals('something', (new NameParser('something_random'))->getAction());
     }
 
     /** @test */
-    public function it_gets_the_correct_matched_results()
+    public function itGetsTheCorrectMatchedResults()
     {
         $matches = (new NameParser('create_users_table'))->getMatches();
 
@@ -51,7 +51,7 @@ class NameParserTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @test */
-    public function it_gets_the_exploded_parts_of_migration_name()
+    public function itGetsTheExplodedPartsOfMigrationName()
     {
         $parser = new NameParser('create_users_table');
 
@@ -65,7 +65,7 @@ class NameParserTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @test */
-    public function it_can_check_if_current_migration_type_matches_given_type()
+    public function itCanCheckIfCurrentMigrationTypeMatchesGivenType()
     {
         $parser = new NameParser('create_users_table');
 
@@ -73,31 +73,31 @@ class NameParserTest extends \PHPUnit\Framework\TestCase
     }
 
     /** @test */
-    public function it_can_check_if_current_migration_is_about_adding()
+    public function itCanCheckIfCurrentMigrationIsAboutAdding()
     {
         self::assertTrue((new NameParser('add_users_table'))->isAdd());
     }
 
     /** @test */
-    public function it_can_check_if_current_migration_is_about_deleting()
+    public function itCanCheckIfCurrentMigrationIsAboutDeleting()
     {
         self::assertTrue((new NameParser('delete_users_table'))->isDelete());
     }
 
     /** @test */
-    public function it_can_check_if_current_migration_is_about_creating()
+    public function itCanCheckIfCurrentMigrationIsAboutCreating()
     {
         self::assertTrue((new NameParser('create_users_table'))->isCreate());
     }
 
     /** @test */
-    public function it_can_check_if_current_migration_is_about_dropping()
+    public function itCanCheckIfCurrentMigrationIsAboutDropping()
     {
         self::assertTrue((new NameParser('drop_users_table'))->isDrop());
     }
 
     /** @test */
-    public function it_makes_a_regex_pattern()
+    public function itMakesARegexPattern()
     {
         self::assertEquals('/create_(.*)_table/', (new NameParser('create_users_table'))->getPattern());
         self::assertEquals('/add_(.*)_to_(.*)_table/', (new NameParser('add_column_to_users_table'))->getPattern());

@@ -33,46 +33,46 @@ class MiddlewareMakeCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_generates_a_new_middleware_class()
+    public function itGeneratesANewMiddlewareClass()
     {
         $code = $this->artisan('module:make-middleware', ['name' => 'SomeMiddleware', 'module' => 'Blog']);
 
-        $this->assertTrue(is_file($this->modulePath . '/Http/Middleware/SomeMiddleware.php'));
+        $this->assertTrue(is_file($this->modulePath.'/Http/Middleware/SomeMiddleware.php'));
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_generated_correct_file_with_content()
+    public function itGeneratedCorrectFileWithContent()
     {
         $code = $this->artisan('module:make-middleware', ['name' => 'SomeMiddleware', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Http/Middleware/SomeMiddleware.php');
+        $file = $this->finder->get($this->modulePath.'/Http/Middleware/SomeMiddleware.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace()
+    public function itCanChangeTheDefaultNamespace()
     {
         $this->app['config']->set('modules.paths.generator.filter.path', 'Middleware');
 
         $code = $this->artisan('module:make-middleware', ['name' => 'SomeMiddleware', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Middleware/SomeMiddleware.php');
+        $file = $this->finder->get($this->modulePath.'/Middleware/SomeMiddleware.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_namespace_specific()
+    public function itCanChangeTheDefaultNamespaceSpecific()
     {
         $this->app['config']->set('modules.paths.generator.filter.namespace', 'Middleware');
 
         $code = $this->artisan('module:make-middleware', ['name' => 'SomeMiddleware', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Http/Middleware/SomeMiddleware.php');
+        $file = $this->finder->get($this->modulePath.'/Http/Middleware/SomeMiddleware.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);

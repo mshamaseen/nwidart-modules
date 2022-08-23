@@ -30,13 +30,13 @@ class HelpersTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_finds_the_module_path()
+    public function itFindsTheModulePath()
     {
         $this->assertTrue(Str::contains(module_path('Blog'), 'modules/Blog'));
     }
 
     /** @test */
-    public function it_can_bind_a_relative_path_to_module_path()
+    public function itCanBindARelativePathToModulePath()
     {
         $this->assertTrue(Str::contains(module_path('Blog', 'config/config.php'), 'modules/Blog/config/config.php'));
     }

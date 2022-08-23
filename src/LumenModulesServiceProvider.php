@@ -30,9 +30,9 @@ class LumenModulesServiceProvider extends ModulesServiceProvider
      */
     public function setupStubPath()
     {
-        Stub::setBasePath(__DIR__ . '/Commands/stubs');
+        Stub::setBasePath(__DIR__.'/Commands/stubs');
 
-        if (app('modules')->config('stubs.enabled') === true) {
+        if (true === app('modules')->config('stubs.enabled')) {
             Stub::setBasePath(app('modules')->config('stubs.path'));
         }
     }
@@ -49,7 +49,7 @@ class LumenModulesServiceProvider extends ModulesServiceProvider
         });
         $this->app->singleton(Contracts\ActivatorInterface::class, function ($app) {
             $activator = $app['config']->get('modules.activator');
-            $class = $app['config']->get('modules.activators.' . $activator)['class'];
+            $class = $app['config']->get('modules.activators.'.$activator)['class'];
 
             return new $class($app);
         });

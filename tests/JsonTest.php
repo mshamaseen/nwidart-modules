@@ -15,31 +15,31 @@ class JsonTest extends BaseTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $path = __DIR__ . '/stubs/valid/module.json';
+        $path = __DIR__.'/stubs/valid/module.json';
         $this->json = new Json($path, $this->app['files']);
     }
 
     /** @test */
-    public function it_gets_the_file_path()
+    public function itGetsTheFilePath()
     {
-        $path = __DIR__ . '/stubs/valid/module.json';
+        $path = __DIR__.'/stubs/valid/module.json';
 
         $this->assertEquals($path, $this->json->getPath());
     }
 
     /** @test */
-    public function it_throws_an_exception_with_invalid_json()
+    public function itThrowsAnExceptionWithInvalidJson()
     {
-        $path = __DIR__ . '/stubs/InvalidJsonModule/module.json';
+        $path = __DIR__.'/stubs/InvalidJsonModule/module.json';
 
         $this->expectException(InvalidJsonException::class);
-        $this->expectExceptionMessage('Error processing file: ' . $path . '. Error: Syntax error');
+        $this->expectExceptionMessage('Error processing file: '.$path.'. Error: Syntax error');
 
         new Json($path, $this->app['files']);
     }
 
     /** @test */
-    public function it_gets_attributes_from_json_file()
+    public function itGetsAttributesFromJsonFile()
     {
         $this->assertEquals('Order', $this->json->get('name'));
         $this->assertEquals('order', $this->json->get('alias'));
@@ -51,7 +51,7 @@ class JsonTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_reads_attributes_from_magic_get_method()
+    public function itReadsAttributesFromMagicGetMethod()
     {
         $this->assertEquals('Order', $this->json->name);
         $this->assertEquals('order', $this->json->alias);
@@ -63,18 +63,18 @@ class JsonTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_makes_json_class()
+    public function itMakesJsonClass()
     {
-        $path = __DIR__ . '/stubs/valid/module.json';
+        $path = __DIR__.'/stubs/valid/module.json';
         $json = Json::make($path, $this->app['files']);
 
         $this->assertInstanceOf(Json::class, $json);
     }
 
     /** @test */
-    public function it_sets_a_path()
+    public function itSetsAPath()
     {
-        $path = __DIR__ . '/stubs/valid/module.json';
+        $path = __DIR__.'/stubs/valid/module.json';
         $this->assertEquals($path, $this->json->getPath());
 
         $this->json->setPath('some/path.json');
@@ -82,7 +82,7 @@ class JsonTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_decodes_json()
+    public function itDecodesJson()
     {
         $expected = '{
     "name": "Order",
@@ -108,7 +108,7 @@ class JsonTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_sets_a_key_value()
+    public function itSetsAKeyValue()
     {
         $this->json->set('key', 'value');
 
@@ -116,7 +116,7 @@ class JsonTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_be_casted_to_string()
+    public function itCanBeCastedToString()
     {
         $expected = '{
     "name": "Order",
@@ -140,6 +140,6 @@ class JsonTest extends BaseTestCase
     ]
 }
 ';
-        $this->assertEquals($expected, (string)$this->json);
+        $this->assertEquals($expected, (string) $this->json);
     }
 }

@@ -46,7 +46,7 @@ class ModuleMakeCommand extends Command
 
             $code = $moduleGenerator->generate();
 
-            if ($code === E_ERROR) {
+            if (E_ERROR === $code) {
                 $success = false;
             } else {
                 event(new ModuleCreated($moduleGenerator));
@@ -80,10 +80,10 @@ class ModuleMakeCommand extends Command
     }
 
     /**
-    * Get module type .
-    *
-    * @return string
-    */
+     * Get module type .
+     *
+     * @return string
+     */
     private function getModuleType()
     {
         $isPlain = $this->option('plain');

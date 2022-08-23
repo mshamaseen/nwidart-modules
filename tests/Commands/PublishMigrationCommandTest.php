@@ -33,7 +33,7 @@ class PublishMigrationCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_publishes_module_migrations()
+    public function itPublishesModuleMigrations()
     {
         $code = $this->artisan('module:publish-migration', ['module' => 'Blog']);
 

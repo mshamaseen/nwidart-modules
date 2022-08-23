@@ -45,7 +45,7 @@ class ControllerMakeCommand extends GeneratorCommand
 
         $controllerPath = GenerateConfigReader::read('controller');
 
-        return $path . $controllerPath->getPath() . '/' . $this->getControllerName() . '.php';
+        return $path.$controllerPath->getPath().'/'.$this->getControllerName().'.php';
     }
 
     /**
@@ -56,16 +56,16 @@ class ControllerMakeCommand extends GeneratorCommand
         $module = $this->laravel['modules']->findOrFail($this->getModuleName());
 
         return (new Stub($this->getStubName(), [
-            'MODULENAME'        => $module->getStudlyName(),
-            'CONTROLLERNAME'    => $this->getControllerName(),
-            'NAMESPACE'         => $module->getStudlyName(),
-            'CLASS_NAMESPACE'   => $this->getClassNamespace($module),
-            'CLASS'             => $this->getControllerNameWithoutNamespace(),
-            'LOWER_NAME'        => $module->getLowerName(),
-            'MODULE'            => $this->getModuleName(),
-            'NAME'              => $this->getModuleName(),
-            'STUDLY_NAME'       => $module->getStudlyName(),
-            'MODULE_NAMESPACE'  => $this->laravel['modules']->config('namespace'),
+            'MODULENAME' => $module->getStudlyName(),
+            'CONTROLLERNAME' => $this->getControllerName(),
+            'NAMESPACE' => $module->getStudlyName(),
+            'CLASS_NAMESPACE' => $this->getClassNamespace($module),
+            'CLASS' => $this->getControllerNameWithoutNamespace(),
+            'LOWER_NAME' => $module->getLowerName(),
+            'MODULE' => $this->getModuleName(),
+            'NAME' => $this->getModuleName(),
+            'STUDLY_NAME' => $module->getStudlyName(),
+            'MODULE_NAMESPACE' => $this->laravel['modules']->config('namespace'),
         ]))->render();
     }
 
@@ -100,7 +100,7 @@ class ControllerMakeCommand extends GeneratorCommand
     {
         $controller = Str::studly($this->argument('controller'));
 
-        if (Str::contains(strtolower($controller), 'controller') === false) {
+        if (false === Str::contains(strtolower($controller), 'controller')) {
             $controller .= 'Controller';
         }
 
@@ -123,14 +123,15 @@ class ControllerMakeCommand extends GeneratorCommand
     }
 
     /**
-     * Get the stub file name based on the options
+     * Get the stub file name based on the options.
+     *
      * @return string
      */
     protected function getStubName()
     {
-        if ($this->option('plain') === true) {
+        if (true === $this->option('plain')) {
             $stub = '/controller-plain.stub';
-        } elseif ($this->option('api') === true) {
+        } elseif (true === $this->option('api')) {
             $stub = '/controller-api.stub';
         } else {
             $stub = '/controller.stub';

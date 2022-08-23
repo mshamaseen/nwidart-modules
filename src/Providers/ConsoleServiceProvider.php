@@ -8,7 +8,8 @@ use Nwidart\Modules\Commands;
 class ConsoleServiceProvider extends ServiceProvider
 {
     /**
-     * The available commands
+     * The available commands.
+     *
      * @var array
      */
     protected $commands = [

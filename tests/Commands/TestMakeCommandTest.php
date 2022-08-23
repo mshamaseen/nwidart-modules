@@ -41,85 +41,85 @@ class TestMakeCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_generates_a_new_test_class()
+    public function itGeneratesANewTestClass()
     {
         $this->artisan('module:make-test', ['name' => 'EloquentPostRepositoryTest', 'module' => 'Blog']);
         $code = $this->artisan('module:make-test', ['name' => 'EloquentPostRepositoryTest', 'module' => 'Blog', '--feature' => true]);
 
-        $this->assertTrue(is_file($this->modulePath . '/Tests/Unit/EloquentPostRepositoryTest.php'));
-        $this->assertTrue(is_file($this->modulePath . '/Tests/Feature/EloquentPostRepositoryTest.php'));
+        $this->assertTrue(is_file($this->modulePath.'/Tests/Unit/EloquentPostRepositoryTest.php'));
+        $this->assertTrue(is_file($this->modulePath.'/Tests/Feature/EloquentPostRepositoryTest.php'));
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_generated_correct_unit_file_with_content()
+    public function itGeneratedCorrectUnitFileWithContent()
     {
         $code = $this->artisan('module:make-test', ['name' => 'EloquentPostRepositoryTest', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Tests/Unit/EloquentPostRepositoryTest.php');
+        $file = $this->finder->get($this->modulePath.'/Tests/Unit/EloquentPostRepositoryTest.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_generated_correct_feature_file_with_content()
+    public function itGeneratedCorrectFeatureFileWithContent()
     {
         $code = $this->artisan('module:make-test', ['name' => 'EloquentPostRepositoryTest', 'module' => 'Blog', '--feature' => true]);
 
-        $file = $this->finder->get($this->modulePath . '/Tests/Feature/EloquentPostRepositoryTest.php');
+        $file = $this->finder->get($this->modulePath.'/Tests/Feature/EloquentPostRepositoryTest.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_unit_namespace()
+    public function itCanChangeTheDefaultUnitNamespace()
     {
         $this->app['config']->set('modules.paths.generator.test.path', 'SuperTests/Unit');
 
         $code = $this->artisan('module:make-test', ['name' => 'EloquentPostRepositoryTest', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/SuperTests/Unit/EloquentPostRepositoryTest.php');
+        $file = $this->finder->get($this->modulePath.'/SuperTests/Unit/EloquentPostRepositoryTest.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_unit_namespace_specific()
+    public function itCanChangeTheDefaultUnitNamespaceSpecific()
     {
         $this->app['config']->set('modules.paths.generator.test.namespace', 'SuperTests\\Unit');
 
         $code = $this->artisan('module:make-test', ['name' => 'EloquentPostRepositoryTest', 'module' => 'Blog']);
 
-        $file = $this->finder->get($this->modulePath . '/Tests/Unit/EloquentPostRepositoryTest.php');
+        $file = $this->finder->get($this->modulePath.'/Tests/Unit/EloquentPostRepositoryTest.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_feature_namespace()
+    public function itCanChangeTheDefaultFeatureNamespace()
     {
         $this->app['config']->set('modules.paths.generator.test-feature.path', 'SuperTests/Feature');
 
         $code = $this->artisan('module:make-test', ['name' => 'EloquentPostRepositoryTest', 'module' => 'Blog', '--feature' => true]);
 
-        $file = $this->finder->get($this->modulePath . '/SuperTests/Feature/EloquentPostRepositoryTest.php');
+        $file = $this->finder->get($this->modulePath.'/SuperTests/Feature/EloquentPostRepositoryTest.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);
     }
 
     /** @test */
-    public function it_can_change_the_default_feature_namespace_specific()
+    public function itCanChangeTheDefaultFeatureNamespaceSpecific()
     {
         $this->app['config']->set('modules.paths.generator.test-feature.namespace', 'SuperTests\\Feature');
 
         $code = $this->artisan('module:make-test', ['name' => 'EloquentPostRepositoryTest', 'module' => 'Blog', '--feature' => true]);
 
-        $file = $this->finder->get($this->modulePath . '/Tests/Feature/EloquentPostRepositoryTest.php');
+        $file = $this->finder->get($this->modulePath.'/Tests/Feature/EloquentPostRepositoryTest.php');
 
         $this->assertMatchesSnapshot($file);
         $this->assertSame(0, $code);

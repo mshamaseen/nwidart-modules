@@ -9,6 +9,7 @@ class Runner implements RunableInterface
 {
     /**
      * The module instance.
+     *
      * @var RepositoryInterface
      */
     protected $module;

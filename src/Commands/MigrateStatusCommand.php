@@ -49,7 +49,7 @@ class MigrateStatusCommand extends Command
         }
 
         foreach ($this->module->getOrdered($this->option('direction')) as $module) {
-            $this->line('Running for module: <info>' . $module->getName() . '</info>');
+            $this->line('Running for module: <info>'.$module->getName().'</info>');
             $this->migrateStatus($module);
         }
 
@@ -58,8 +58,6 @@ class MigrateStatusCommand extends Command
 
     /**
      * Run the migration from the specified module.
-     *
-     * @param Module $module
      */
     protected function migrateStatus(Module $module)
     {

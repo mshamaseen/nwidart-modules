@@ -23,7 +23,7 @@ class ModuleTest extends BaseTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->module = new TestingModule($this->app, 'Recipe Name', __DIR__ . '/stubs/valid/Recipe');
+        $this->module = new TestingModule($this->app, 'Recipe Name', __DIR__.'/stubs/valid/Recipe');
         $this->activator = $this->app[ActivatorInterface::class];
     }
 
@@ -36,84 +36,84 @@ class ModuleTest extends BaseTestCase
     public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
-        symlink(__DIR__ . '/stubs/valid', __DIR__ . '/stubs/valid_symlink');
+        symlink(__DIR__.'/stubs/valid', __DIR__.'/stubs/valid_symlink');
     }
 
     public static function tearDownAfterClass(): void
     {
         parent::tearDownAfterClass();
-        unlink(__DIR__ . '/stubs/valid_symlink');
+        unlink(__DIR__.'/stubs/valid_symlink');
     }
 
     /** @test */
-    public function it_gets_module_name()
+    public function itGetsModuleName()
     {
         $this->assertEquals('Recipe Name', $this->module->getName());
     }
 
     /** @test */
-    public function it_gets_lowercase_module_name()
+    public function itGetsLowercaseModuleName()
     {
         $this->assertEquals('recipe name', $this->module->getLowerName());
     }
 
     /** @test */
-    public function it_gets_studly_name()
+    public function itGetsStudlyName()
     {
         $this->assertEquals('RecipeName', $this->module->getStudlyName());
     }
 
     /** @test */
-    public function it_gets_snake_name()
+    public function itGetsSnakeName()
     {
         $this->assertEquals('recipe_name', $this->module->getSnakeName());
     }
 
     /** @test */
-    public function it_gets_module_description()
+    public function itGetsModuleDescription()
     {
         $this->assertEquals('recipe module', $this->module->getDescription());
     }
 
     /** @test */
-    public function it_gets_module_alias()
+    public function itGetsModuleAlias()
     {
         $this->assertEquals('recipe', $this->module->getAlias());
     }
 
     /** @test */
-    public function it_gets_module_path()
+    public function itGetsModulePath()
     {
-        $this->assertEquals(__DIR__ . '/stubs/valid/Recipe', $this->module->getPath());
+        $this->assertEquals(__DIR__.'/stubs/valid/Recipe', $this->module->getPath());
     }
 
     /** @test */
-    public function it_gets_module_path_with_symlink()
+    public function itGetsModulePathWithSymlink()
     {
         // symlink created in setUpBeforeClass
 
-        $this->module = new TestingModule($this->app, 'Recipe Name', __DIR__ . '/stubs/valid_symlink/Recipe');
+        $this->module = new TestingModule($this->app, 'Recipe Name', __DIR__.'/stubs/valid_symlink/Recipe');
 
-        $this->assertEquals(__DIR__ . '/stubs/valid_symlink/Recipe', $this->module->getPath());
+        $this->assertEquals(__DIR__.'/stubs/valid_symlink/Recipe', $this->module->getPath());
 
         // symlink deleted in tearDownAfterClass
     }
 
     /** @test */
-    public function it_gets_required_modules()
+    public function itGetsRequiredModules()
     {
         $this->assertEquals(['required_module'], $this->module->getRequires());
     }
 
     /** @test */
-    public function it_loads_module_translations()
+    public function itLoadsModuleTranslations()
     {
-        (new TestingModule($this->app, 'Recipe', __DIR__ . '/stubs/valid/Recipe'))->boot();
+        (new TestingModule($this->app, 'Recipe', __DIR__.'/stubs/valid/Recipe'))->boot();
         $this->assertEquals('Recipe', trans('recipe::recipes.title.recipes'));
     }
 
     /** @test */
-    public function it_reads_module_json_files()
+    public function itReadsModuleJsonFiles()
     {
         $jsonModule = $this->module->json();
         $composerJson = $this->module->json('composer.json');
@@ -125,7 +125,7 @@ class ModuleTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_reads_key_from_module_json_file_via_helper_method()
+    public function itReadsKeyFromModuleJsonFileViaHelperMethod()
     {
         $this->assertEquals('Recipe', $this->module->get('name'));
         $this->assertEquals('0.1', $this->module->get('version'));
@@ -134,33 +134,33 @@ class ModuleTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_reads_key_from_composer_json_file_via_helper_method()
+    public function itReadsKeyFromComposerJsonFileViaHelperMethod()
     {
         $this->assertEquals('nwidart/recipe', $this->module->getComposerAttr('name'));
     }
 
     /** @test */
-    public function it_casts_module_to_string()
+    public function itCastsModuleToString()
     {
         $this->assertEquals('RecipeName', (string) $this->module);
     }
 
     /** @test */
-    public function it_module_status_check()
+    public function itModuleStatusCheck()
     {
         $this->assertFalse($this->module->isStatus(true));
         $this->assertTrue($this->module->isStatus(false));
     }
 
     /** @test */
-    public function it_checks_module_enabled_status()
+    public function itChecksModuleEnabledStatus()
     {
         $this->assertFalse($this->module->isEnabled());
         $this->assertTrue($this->module->isDisabled());
     }
 
     /** @test */
-    public function it_sets_active_status(): void
+    public function itSetsActiveStatus(): void
     {
         $this->module->setActive(true);
         $this->assertTrue($this->module->isEnabled());
@@ -169,7 +169,7 @@ class ModuleTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_fires_events_when_module_is_enabled()
+    public function itFiresEventsWhenModuleIsEnabled()
     {
         Event::fake();
 
@@ -180,7 +180,7 @@ class ModuleTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_fires_events_when_module_is_disabled()
+    public function itFiresEventsWhenModuleIsDisabled()
     {
         Event::fake();
 
@@ -191,7 +191,7 @@ class ModuleTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_has_a_good_providers_manifest_path()
+    public function itHasAGoodProvidersManifestPath()
     {
         $this->assertEquals(
             $this->app->bootstrapPath("cache/{$this->module->getSnakeName()}_module.php"),
@@ -200,7 +200,7 @@ class ModuleTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_makes_a_manifest_file_when_providers_are_loaded()
+    public function itMakesAManifestFileWhenProvidersAreLoaded()
     {
         $cachedServicesPath = $this->module->getCachedServicesPath();
 
@@ -217,15 +217,14 @@ class ModuleTest extends BaseTestCase
                 RecipeServiceProvider::class,
                 DeferredServiceProvider::class,
             ],
-            'eager'     => [RecipeServiceProvider::class],
-            'deferred'  => ['deferred' => DeferredServiceProvider::class],
-            'when'      =>
-                [DeferredServiceProvider::class => []],
+            'eager' => [RecipeServiceProvider::class],
+            'deferred' => ['deferred' => DeferredServiceProvider::class],
+            'when' => [DeferredServiceProvider::class => []],
         ], $manifest);
     }
 
     /** @test */
-    public function it_can_load_a_deferred_provider()
+    public function itCanLoadADeferredProvider()
     {
         @unlink($this->module->getCachedServicesPath());
 

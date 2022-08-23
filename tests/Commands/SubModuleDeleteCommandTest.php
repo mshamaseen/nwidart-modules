@@ -27,7 +27,7 @@ class SubModuleDeleteCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_can_delete_a_module_from_disk(): void
+    public function itCanDeleteAModuleFromDisk(): void
     {
         $this->artisan('module:make', ['name' => ['Blog/WrongSubModule']]);
         $this->assertDirectoryExists(base_path('modules/Blog/WrongSubModule'));
@@ -38,7 +38,7 @@ class SubModuleDeleteCommandTest extends BaseTestCase
     }
 
     /** @test */
-    public function it_deletes_modules_from_status_file(): void
+    public function itDeletesModulesFromStatusFile(): void
     {
         $this->artisan('module:make', ['name' => ['Blog/WrongSubModule']]);
         $this->assertMatchesSnapshot($this->finder->get($this->activator->getStatusesFilePath()));

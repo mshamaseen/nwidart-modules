@@ -13,21 +13,21 @@ use Nwidart\Modules\Module;
 class FileActivator implements ActivatorInterface
 {
     /**
-     * Laravel cache instance
+     * Laravel cache instance.
      *
      * @var CacheManager
      */
     private $cache;
 
     /**
-     * Laravel Filesystem instance
+     * Laravel Filesystem instance.
      *
      * @var Filesystem
      */
     private $files;
 
     /**
-     * Laravel config instance
+     * Laravel config instance.
      *
      * @var Config
      */
@@ -44,14 +44,14 @@ class FileActivator implements ActivatorInterface
     private $cacheLifetime;
 
     /**
-     * Array of modules activation statuses
+     * Array of modules activation statuses.
      *
      * @var array
      */
     private $modulesStatuses;
 
     /**
-     * File used to store activation statuses
+     * File used to store activation statuses.
      *
      * @var string
      */
@@ -69,9 +69,7 @@ class FileActivator implements ActivatorInterface
     }
 
     /**
-     * Get the path of the file where statuses are stored
-     *
-     * @return string
+     * Get the path of the file where statuses are stored.
      */
     public function getStatusesFilePath(): string
     {
@@ -79,7 +77,7 @@ class FileActivator implements ActivatorInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function reset(): void
     {
@@ -91,7 +89,7 @@ class FileActivator implements ActivatorInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function enable(Module $module): void
     {
@@ -99,7 +97,7 @@ class FileActivator implements ActivatorInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function disable(Module $module): void
     {
@@ -107,19 +105,19 @@ class FileActivator implements ActivatorInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function hasStatus(Module $module, bool $status): bool
     {
         if (!isset($this->modulesStatuses[$module->getName()])) {
-            return $status === false;
+            return false === $status;
         }
 
         return $this->modulesStatuses[$module->getName()] === $status;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function setActive(Module $module, bool $active): void
     {
@@ -127,7 +125,7 @@ class FileActivator implements ActivatorInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function setActiveByName(string $name, bool $status): void
     {
@@ -137,7 +135,7 @@ class FileActivator implements ActivatorInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function delete(Module $module): void
     {
@@ -150,7 +148,7 @@ class FileActivator implements ActivatorInterface
     }
 
     /**
-     * Writes the activation statuses in a file, as json
+     * Writes the activation statuses in a file, as json.
      */
     private function writeJson(): void
     {
@@ -159,7 +157,7 @@ class FileActivator implements ActivatorInterface
 
     /**
      * Reads the json file that contains the activation statuses.
-     * @return array
+     *
      * @throws FileNotFoundException
      */
     private function readJson(): array
@@ -174,7 +172,7 @@ class FileActivator implements ActivatorInterface
     /**
      * Get modules statuses, either from the cache or from
      * the json statuses file if the cache is disabled.
-     * @return array
+     *
      * @throws FileNotFoundException
      */
     private function getModulesStatuses(): array
@@ -189,19 +187,19 @@ class FileActivator implements ActivatorInterface
     }
 
     /**
-     * Reads a config parameter under the 'activators.file' key
+     * Reads a config parameter under the 'activators.file' key.
      *
-     * @param  string $key
-     * @param  $default
+     * @param $default
+     *
      * @return mixed
      */
     private function config(string $key, $default = null)
     {
-        return $this->config->get('modules.activators.file.' . $key, $default);
+        return $this->config->get('modules.activators.file.'.$key, $default);
     }
 
     /**
-     * Flushes the modules activation statuses cache
+     * Flushes the modules activation statuses cache.
      */
     private function flushCache(): void
     {

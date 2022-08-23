@@ -4,7 +4,6 @@ use Nwidart\Modules\Activators\FileActivator;
 use Nwidart\Modules\Commands;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Module Namespace
@@ -57,7 +56,7 @@ return [
                 'AUTHOR_EMAIL',
                 'MODULE_NAMESPACE',
                 'PROVIDER_NAMESPACE',
-                'SUB_MODULE_NAMESPACE'
+                'SUB_MODULE_NAMESPACE',
             ],
         ],
         'gitkeep' => true,
@@ -245,7 +244,7 @@ return [
     */
     'register' => [
         'translations' => true,
-        /**
+        /*
          * load files on boot or register method
          *
          * Note: boot not compatible with asgardcms

@@ -54,8 +54,6 @@ class Json
     /**
      * Set filesystem.
      *
-     * @param Filesystem $filesystem
-     *
      * @return $this
      */
     public function setFilesystem(Filesystem $filesystem)
@@ -114,7 +112,9 @@ class Json
 
     /**
      * Get file contents as array.
+     *
      * @return array
+     *
      * @throws \Exception
      */
     public function getAttributes()
@@ -123,10 +123,10 @@ class Json
 
         // any JSON parsing errors should throw an exception
         if (json_last_error() > 0) {
-            throw new InvalidJsonException('Error processing file: ' . $this->getPath() . '. Error: ' . json_last_error_msg());
+            throw new InvalidJsonException('Error processing file: '.$this->getPath().'. Error: '.json_last_error_msg());
         }
 
-        if (config('modules.cache.enabled') === false) {
+        if (false === config('modules.cache.enabled')) {
             return $attributes;
         }
 
@@ -149,8 +149,6 @@ class Json
 
     /**
      * Update json contents from array data.
-     *
-     * @param array $data
      *
      * @return bool
      */
