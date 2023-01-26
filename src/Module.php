@@ -24,8 +24,6 @@ abstract class Module
 
     /**
      * The module name.
-     *
-     * @var
      */
     protected $name;
 
@@ -59,9 +57,6 @@ abstract class Module
 
     /**
      * The constructor.
-     *
-     * @param $name
-     * @param $path
      */
     public function __construct(Container $app, string $name, $path)
     {
@@ -251,7 +246,6 @@ abstract class Module
     /**
      * Get a specific data from composer.json file by given the key.
      *
-     * @param $key
      * @param null $default
      *
      * @return mixed

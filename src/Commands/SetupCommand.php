@@ -56,10 +56,6 @@ class SetupCommand extends Command
 
     /**
      * Generate the specified directory by given $dir.
-     *
-     * @param $dir
-     * @param $success
-     * @param $error
      */
     protected function generateDirectory($dir, $success, $error): int
     {

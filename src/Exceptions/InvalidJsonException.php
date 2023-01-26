@@ -2,6 +2,8 @@
 
 namespace Nwidart\Modules\Exceptions;
 
-class InvalidJsonException extends \Exception
+use Exception;
+
+class InvalidJsonException extends Exception
 {
 }

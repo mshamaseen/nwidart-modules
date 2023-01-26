@@ -57,8 +57,6 @@ class MigrateResetCommand extends Command
 
     /**
      * Rollback migration from the specified module.
-     *
-     * @param $module
      */
     public function reset($module)
     {

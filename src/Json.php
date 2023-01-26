@@ -2,6 +2,7 @@
 
 namespace Nwidart\Modules;
 
+use Exception;
 use Illuminate\Filesystem\Filesystem;
 use Nwidart\Modules\Exceptions\InvalidJsonException;
 
@@ -115,7 +116,7 @@ class Json
      *
      * @return array
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAttributes()
     {
@@ -199,7 +200,6 @@ class Json
     /**
      * Get the specified attribute from json file.
      *
-     * @param $key
      * @param null $default
      *
      * @return mixed

@@ -2,6 +2,8 @@
 
 namespace Nwidart\Modules\Exceptions;
 
-class FileAlreadyExistException extends \Exception
+use Exception;
+
+class FileAlreadyExistException extends Exception
 {
 }

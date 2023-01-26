@@ -78,8 +78,6 @@ class ModuleGenerator extends Generator
 
     /**
      * The constructor.
-     *
-     * @param $name
      */
     public function __construct(
         $name,
@@ -403,8 +401,6 @@ class ModuleGenerator extends Generator
     /**
      * Get the contents of the specified stub file by given stub name.
      *
-     * @param $stub
-     *
      * @return string
      */
     protected function getStubContents($stub)
@@ -426,8 +422,6 @@ class ModuleGenerator extends Generator
 
     /**
      * Get array replacement for the specified stub.
-     *
-     * @param $stub
      *
      * @return array
      */

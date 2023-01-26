@@ -15,6 +15,8 @@ use Nwidart\Modules\Exceptions\InvalidAssetPath;
 use Nwidart\Modules\Exceptions\ModuleNotFoundException;
 use Nwidart\Modules\Process\Installer;
 use Nwidart\Modules\Process\Updater;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 use SplFileInfo;
 
 abstract class FileRepository implements RepositoryInterface, Countable
@@ -137,8 +139,8 @@ abstract class FileRepository implements RepositoryInterface, Countable
             return [];
         }
 
-        $dir = new \RecursiveDirectoryIterator($folder);
-        $ite = new \RecursiveIteratorIterator($dir);
+        $dir = new RecursiveDirectoryIterator($folder);
+        $ite = new RecursiveIteratorIterator($dir);
         $fileList = [];
         foreach ($ite as $file) {
             /** @var SplFileInfo $file */
@@ -230,8 +232,6 @@ abstract class FileRepository implements RepositoryInterface, Countable
 
     /**
      * Get modules by status.
-     *
-     * @param $status
      */
     public function getByStatus($status): array
     {
@@ -249,8 +249,6 @@ abstract class FileRepository implements RepositoryInterface, Countable
 
     /**
      * Determine whether the given module exist.
-     *
-     * @param $name
      */
     public function has($name): bool
     {
@@ -380,8 +378,6 @@ abstract class FileRepository implements RepositoryInterface, Countable
     /**
      * Find a specific module, if there return that, otherwise throw exception.
      *
-     * @param $name
-     *
      * @return Module
      *
      * @throws ModuleNotFoundException
@@ -399,8 +395,6 @@ abstract class FileRepository implements RepositoryInterface, Countable
 
     /**
      * Get all modules as laravel collection instance.
-     *
-     * @param $status
      */
     public function collections($status = 1): Collection
     {
@@ -409,8 +403,6 @@ abstract class FileRepository implements RepositoryInterface, Countable
 
     /**
      * Get module path for a specific module.
-     *
-     * @param $module
      *
      * @return string
      */
@@ -459,8 +451,6 @@ abstract class FileRepository implements RepositoryInterface, Countable
 
     /**
      * Set module used for cli session.
-     *
-     * @param $name
      *
      * @throws ModuleNotFoundException
      */

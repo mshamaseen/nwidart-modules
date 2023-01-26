@@ -2,7 +2,9 @@
 
 namespace Nwidart\Modules\Exceptions;
 
-class InvalidAssetPath extends \Exception
+use Exception;
+
+class InvalidAssetPath extends Exception
 {
     public static function missingModuleName($asset)
     {

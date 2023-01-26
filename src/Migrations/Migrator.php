@@ -43,8 +43,6 @@ class Migrator
     /**
      * Set the database connection to be used.
      *
-     * @param $database
-     *
      * @return $this
      */
     public function setDatabase($database)

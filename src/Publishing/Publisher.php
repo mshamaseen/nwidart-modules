@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use Nwidart\Modules\Contracts\PublisherInterface;
 use Nwidart\Modules\Contracts\RepositoryInterface;
 use Nwidart\Modules\Module;
+use RuntimeException;
 
 abstract class Publisher implements PublisherInterface
 {
@@ -169,7 +170,7 @@ abstract class Publisher implements PublisherInterface
         if (!$this->console instanceof Command) {
             $message = "The 'console' property must instance of \\Illuminate\\Console\\Command.";
 
-            throw new \RuntimeException($message);
+            throw new RuntimeException($message);
         }
 
         if (!$this->getFilesystem()->isDirectory($sourcePath = $this->getSourcePath())) {

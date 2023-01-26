@@ -2,6 +2,7 @@
 
 namespace Nwidart\Modules\Tests;
 
+use Exception;
 use Illuminate\Support\Facades\Event;
 use Modules\Recipe\Providers\DeferredServiceProvider;
 use Modules\Recipe\Providers\RecipeServiceProvider;
@@ -233,7 +234,7 @@ class ModuleTest extends BaseTestCase
         try {
             app('foo');
             $this->assertTrue(false, "app('foo') should throw an exception.");
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->assertEquals('Target class [foo] does not exist.', $e->getMessage());
         }
 

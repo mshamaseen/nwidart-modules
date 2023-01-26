@@ -6,13 +6,8 @@ use Modules\Media\Contracts\StoringMedia;
 
 class RecipeWasCreated implements StoringMedia
 {
-    /**
-     * @var
-     */
     private $recipe;
-    /**
-     * @var
-     */
+
     private $data;
 
     public function __construct($recipe, $data)

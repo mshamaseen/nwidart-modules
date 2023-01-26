@@ -173,7 +173,7 @@ class SchemaParser implements Arrayable
         if (0 === $key) {
             $relatedColumn = Str::snake(class_basename($field)).'_id';
 
-            return "->integer('{$relatedColumn}')->unsigned();".PHP_EOL."\t\t\t"."\$table->foreign('{$relatedColumn}')";
+            return "->integer('{$relatedColumn}')->unsigned();".PHP_EOL."\t\t\t\$table->foreign('{$relatedColumn}')";
         }
         if (1 === $key) {
             return "->references('{$field}')";

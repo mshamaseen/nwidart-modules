@@ -2,7 +2,9 @@
 
 namespace Nwidart\Modules\Exceptions;
 
-class InvalidActivatorClass extends \Exception
+use Exception;
+
+class InvalidActivatorClass extends Exception
 {
     public static function missingConfig()
     {

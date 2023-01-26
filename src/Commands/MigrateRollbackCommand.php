@@ -57,8 +57,6 @@ class MigrateRollbackCommand extends Command
 
     /**
      * Rollback migration from the specified module.
-     *
-     * @param $module
      */
     public function rollback($module)
     {

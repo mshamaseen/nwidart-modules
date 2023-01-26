@@ -189,8 +189,6 @@ class FileActivator implements ActivatorInterface
     /**
      * Reads a config parameter under the 'activators.file' key.
      *
-     * @param $default
-     *
      * @return mixed
      */
     private function config(string $key, $default = null)

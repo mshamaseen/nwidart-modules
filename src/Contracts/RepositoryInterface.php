@@ -84,8 +84,6 @@ interface RepositoryInterface
     /**
      * Find a specific module.
      *
-     * @param $name
-     *
      * @return Module|null
      */
     public function find(string $name);
@@ -93,16 +91,12 @@ interface RepositoryInterface
     /**
      * Find all modules that are required by a module. If the module cannot be found, throw an exception.
      *
-     * @param $name
-     *
      * @throws ModuleNotFoundException
      */
     public function findRequirements($name): array;
 
     /**
      * Find a specific module. If there return that, otherwise throw exception.
-     *
-     * @param $name
      *
      * @return mixed
      */
